@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import Cabecera from "./componentes/cabecera";
+import Footer from "./componentes/footer";
+import Pasos from "./componentes/pasos";
+import Suenio from "./componentes/suenio";
+import Resumen from "./componentes/resumen";
+import Sidebar from "./componentes/sidebar";
+
+import React, { useState } from 'react';
+
+
 import './App.css';
 
+
 function App() {
+  const { clase, setClase } = useState("d-flex bg-purple-900");
+  
+    const handleChange = (e) => { 
+    e.preventDefault();
+    setClase("d-flex bg-purple-900 toggled")
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={clase} id="wrapper" >
+      <Sidebar />
+      <div id="page-content-wrapper">
+        <Cabecera cambiarClase={handleChange}/>
+        <main className="d-xs-flex justify-content-evenly">
+          <Resumen />
+          <Pasos />
+          <Suenio />
+        </main>
+         <Footer />
+      </div>
+      
+     
+  
     </div>
-  );
+  )
+   
 }
 
 export default App;
