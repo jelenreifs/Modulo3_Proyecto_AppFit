@@ -12,19 +12,26 @@ import './App.css';
 
 
 function App() {
-  const { clase, setClase } = useState("d-flex bg-purple-900");
+  const [ clase, setClase ] = useState("d-flex bg-purple-900");
   
-    const handleChange = (e) => { 
-    e.preventDefault();
-    setClase("d-flex bg-purple-900 toggled")
-  }
+   const handleChange = (e) => { 
+      e.preventDefault();
+      if (clase === "d-flex bg-purple-900 toggled") {
+        setClase("d-flex bg-purple-900")
+      } else {
+          setClase("d-flex bg-purple-900 toggled")
+       }
+   
+    } 
+  
+
 
   return (
     <div className={clase} id="wrapper" >
       <Sidebar />
       <div id="page-content-wrapper">
         <Cabecera cambiarClase={handleChange}/>
-        <main className="d-xs-flex justify-content-evenly">
+        <main>
           <Resumen />
           <Pasos />
           <Suenio />

@@ -1,37 +1,13 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 main {
   height: 100vh;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  z-index: 1;
-}
-
-header .navbar {
-    max-height: 30px;
- 
-}
-
-header ul {
   display: flex;
-  color: #fff;
-  list-style: none;
-}
-
-@media (max-width: 576px) {
-  main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding-top: 65px;
-    width: 100%;
-  }
-
-  .card-dashboard {
-    min-height: 29vh;
-    width: 88vw;
-  }
+  flex-direction: row;
+  position: relative;
+  top: 60px;
 }
 
 footer {
@@ -39,6 +15,10 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+/*****************************************/
+/*            COLOR              */
+/*****************************************/
 
 .bg-purple-900 {
   background-color: #160d27;
@@ -56,9 +36,133 @@ footer {
   border-color: #aa00ff !important;
 }
 
+/*****************************************/
+/*               CABECERA                */
+/*****************************************/
 
-/* SIDEBAR */
+header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
 
+header .navbar {
+  max-height: 30px;
+}
+
+header ul {
+  display: flex;
+  color: #fff;
+  list-style: none;
+}
+
+@media (max-width: 576px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    position: relative;
+    left: 20px;
+  }
+
+  .card-dashboard {
+    min-height: 29vh;
+    width: 88vw;
+  }
+}
+
+header .logo {
+  width: 160px;
+}
+
+header button {
+  background: none;
+  border: none;
+  margin-right: 30px;
+}
+
+header button i {
+  color: #fff;
+}
+
+header .navbar {
+  width: 100vw;
+  align-items: center;
+}
+
+header .navbar ul {
+  margin: 0;
+}
+
+/*****************************************/
+/*            CARD RESUMEN               */
+/*****************************************/
+
+section.resumen .grafico {
+  position: relative;
+  left: -40px;
+  top: -16px;
+  max-height: 260px;
+  overflow: hidden;
+}
+
+section.resumen .card-title {
+  justify-content: center;
+  display: flex;
+}
+
+section.resumen dl {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: -30px;
+}
+
+section.resumen dt {
+  font-weight: 300;
+}
+
+section.resumen dd {
+  font-size: 2em;
+  font-weight: 800;
+}
+
+section.resumen dd::before {
+  content: ".";
+  width: 20px;
+  height: 20px;
+  background: rgb(246, 156, 85);
+  border-radius: 50%;
+}
+
+/*************** **************************/
+/*            CARD PASOS y SUEÑO               */
+/*****************************************/
+
+section.pasos .grafico,
+section.suenio .grafico {
+  position: relative;
+  left: -26px;
+  top: 0px;
+  max-height: 260px;
+  overflow: hidden;
+}
+
+section.pasos .card-title, 
+section.suenio .card-title {
+  justify-content: center;
+  display: flex;
+  margin-top: 0.65em;
+}
+
+/*****************************************/
+/*            CARD SUEÑO               */
+/*****************************************/
+
+/*****************************************/
+/*               SIDEBAR                 */
+/*****************************************/
 
 #wrapper {
   overflow-x: hidden;
@@ -66,7 +170,9 @@ footer {
 
 #sidebar-wrapper {
   min-height: 100vh;
-  margin-left: -15rem;
+  margin-left: -23rem;
+  margin-right: 1.75rem;
+
   -webkit-transition: margin .25s ease-out;
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
@@ -79,7 +185,7 @@ footer {
 }
 
 #sidebar-wrapper .list-group {
-  width: 15rem;
+  width: 22rem;
 }
 
 #page-content-wrapper {
@@ -101,9 +207,6 @@ footer {
   }
 
   #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
+    margin-left: -23rem;
   }
 }
-
-
-

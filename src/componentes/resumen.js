@@ -1,15 +1,86 @@
+import Chart from "react-apexcharts";
+import React, { useState, useEffect } from 'react';
 
 function Resumen() {
+
+     let series = [70] ; 
+     
+    let options= {
+        chart: {
+          height: 350,
+          type: "radialBar",
+        },
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              size: "70%",
+            }
+          },
+        },
+        labels: ["Reto"],
+      }
+    
+
+  const [data, setData] = useState([]);
+  const [chart, setChart] = useState(options);
+  const [datosChart, setDatosChart] = useState(series);
+
+   useEffect(() => {
+    fetch("http://localhost:3000/entrenamientos")
+     .then(res => res.json())
+       .then(res => {
+        setData(res);
+       });
+ }, []);
+
+
+  
+  //console.log(data)
+ // console.log(data[4].pasos)
+  //console.log(data[data.length-1].pasos)
+ // console.log(data[data.length-1])
+
+
+
+/* const mostrarDatos = {
+   datosPasos: data[data.length - 1].pasos,
+   datosDuracion: data[data.length - 1].duracion,
+   datosCalorias: data[data.length - 1].calorias
+  } */
+  
+
+
   return (
-    <div className="col-xs-12 col-lg-4">
+    <section className="col-xs-12 col-lg-4 resumen">
       <div className="card card-dashboard bg-purple-800 rounded border border-primary">
-      <img src="..." className="card-img-top" alt="..." />
         <div className="card-body">
-          <h5 className="card-title text-white">Card title</h5>
-          <p className="card-text text-light">Contenido card</p>
+          <div className="row">
+              <div className="col-sm-8 grafico">
+                <Chart
+                  options={chart}
+                  series={datosChart}
+                  type="radialBar"
+                  width="360"
+                />
+              </div>
+            <div className="col-sm-4 card-text text-light">
+              <dl>
+                <dt>Pasos</dt>
+                <dd>8000</dd>
+                <dt>Duración</dt>
+                <dd>120</dd>
+                <dt>Calorías</dt>
+                <dd>790</dd>
+            </dl>
+              
+              </div>
+           </div>
+
+           <h5 className="card-title text-white mb-0">Actividad</h5>
+         
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
