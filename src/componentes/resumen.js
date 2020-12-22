@@ -24,29 +24,28 @@ function Resumen() {
   const [data, setData] = useState([]);
   const [chart, setChart] = useState(options);
   const [datosChart, setDatosChart] = useState(series);
+  const [mostrarDatos, setMostrarDatos] = useState({ pasos:0,duracion:0, calorias:0 });
+
 
    useEffect(() => {
     fetch("http://localhost:3000/entrenamientos")
      .then(res => res.json())
        .then(res => {
-        setData(res);
+         setData(res);
+         setMostrarDatos({
+          datosPasos: res[res.length - 1].pasos,
+          datosDuracion: res[res.length - 1].duracion,
+          datosCalorias: res[res.length - 1].calorias
+  })
        });
  }, []);
 
 
   
-  //console.log(data)
- // console.log(data[4].pasos)
-  //console.log(data[data.length-1].pasos)
+//console.log(data)
+//console.log(data[4].pasos)
+//console.log(data[data.length-1].pasos)
  // console.log(data[data.length-1])
-
-
-
-/* const mostrarDatos = {
-   datosPasos: data[data.length - 1].pasos,
-   datosDuracion: data[data.length - 1].duracion,
-   datosCalorias: data[data.length - 1].calorias
-  } */
   
 
 

@@ -17,8 +17,25 @@ footer {
 }
 
 /*****************************************/
+/*         AJUSTES BOOTSTRAP              */
+/*****************************************/
+label {
+  margin-bottom: .25rem;
+  color: #673ab7;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/*****************************************/
 /*            COLOR              */
 /*****************************************/
+.bg-purple-100 {
+  background-color: #d1c4e9;
+}
+
+.bg-purple-200 {
+  background-color: #b39ddb;
+}
 
 .bg-purple-900 {
   background-color: #160d27;
@@ -32,8 +49,66 @@ footer {
   background-color: #aa00ff !important;
 }
 
+.btn-primary {
+  background-color: #673ab7 !important;
+  border-color: #673ab7 !important;
+}
+
+.btn:hover {
+  background-color: #aa00ff !important;
+  border-color: #aa00ff !important;
+}
+
 .border-primary {
   border-color: #aa00ff !important;
+}
+
+/*****************************************/
+/*               Login               */
+/*****************************************/
+
+.login,
+.registro {
+  width: 576px;
+  display: flex;
+  flex-direction: column;
+  padding: 4em;
+}
+
+.login button,
+.registro button {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.login .logo,
+.registro .logo {
+  display: flex;
+  justify-content: center;
+  height: 35vh;
+  vertical-align: center;
+  align-items: center;
+}
+
+.login .logo img,
+.registro .logo img {
+  height: 220px;
+  vertical-align: center;
+}
+
+.link a,
+.nav-link {
+  font-size: 1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.5em 1.5em;
+  color: #aa00ff !important;
+}
+
+.link a:hover,
+.nav-link:hover {
+  background-color: #aa00ff !important;
+  color: #fff !important;
 }
 
 /*****************************************/
@@ -63,7 +138,8 @@ header ul {
     justify-content: space-evenly;
     width: 100%;
     position: relative;
-    left: 20px;
+    /*  left: 20px; */
+    right: 10px;
   }
 
   .card-dashboard {
@@ -149,7 +225,7 @@ section.suenio .grafico {
   overflow: hidden;
 }
 
-section.pasos .card-title, 
+section.pasos .card-title,
 section.suenio .card-title {
   justify-content: center;
   display: flex;
@@ -157,8 +233,72 @@ section.suenio .card-title {
 }
 
 /*****************************************/
-/*            CARD SUEÑO               */
+/*             SEGUIMIENTO             */
 /*****************************************/
+
+.seguimiento {
+  position: absolute;
+  top: 16px;
+}
+
+.seguimiento .table {
+  width: 100vw;
+}
+
+.seguimiento .table td {
+  border: none;
+  justify-content: center;
+  text-align: center;
+}
+
+.seguimiento .table tr {
+  border-bottom: 1px solid #aa00ff;
+}
+
+.seguimiento .table tr {
+  border-bottom: 1px solid #aa00ff;
+}
+
+.seguimiento .table p {
+  color: #fff;
+  margin: 0;
+  font-weight: 300;
+}
+
+.seguimiento .table .list-item-dato {
+  font-weight: 800;
+  font-size: 2em;
+  line-height: 26px;
+}
+
+.seguimiento .table .list-item-dato {
+  font-weight: 800;
+  font-size: 2em;
+  line-height: 26px;
+  margin-top: 0.45em;
+}
+
+.seguimiento .table .list-item-dato {
+  font-weight: 800;
+  font-size: 2em;
+  line-height: 26px;
+}
+
+.seguimiento .table  i {
+  color: #6fb4b4;
+}
+
+.seguimiento .table .tiempo i {
+  color: #e91e63;
+}
+
+.seguimiento .table .kilometros i {
+  color: #ffa726;
+}
+
+.seguimiento .table .pasos i {
+  color: #2196f3;
+}
 
 /*****************************************/
 /*               SIDEBAR                 */
@@ -179,13 +319,9 @@ section.suenio .card-title {
   transition: margin .25s ease-out;
 }
 
-#sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-}
-
 #sidebar-wrapper .list-group {
   width: 22rem;
+  padding: 1.25em 1.5em;
 }
 
 #page-content-wrapper {
@@ -209,4 +345,49 @@ section.suenio .card-title {
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -23rem;
   }
+}
+
+/*****************************************/
+/*               SIDEBAR                 */
+/*****************************************/
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-time-picker__wrapper {
+  border: none;
+}
+
+.react-time-picker__clock,
+.react-time-picker__clock--open {
+  border: none;
+}
+
+.react-time-picker__inputGroup {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: none !important;
+
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.react-time-picker__clock.react-time-picker__clock--open {
+    display: none;
+}
+
+.react-time-picker__clock-button {
+  display: none;
+}
+
+.react-time-picker__clear-button {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
 }

@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 
-function Cabecera(props) {
+import { Link } from 'react-router-dom';
+function Cabecera2(props) {
   console.log(props.cambiarClase)
 
   return (
@@ -14,14 +14,13 @@ function Cabecera(props) {
         </div>
       
           <ul className="ml-auto mt-2 mt-lg-0">
-            <li className="nav-item">
-              <Link to="/seguimiento" className="nav-link">
-               ENTRENAMIENTO
+          <li className="nav-item">
+            <Link to="/dashboard" className="nav-link">
+              <i className="fas fa-arrow-left"></i>
+               DASHBOARD
               </Link>
-            
             </li>
-          </ul>
-       
+        </ul>
       </nav>
       </header>
             
@@ -31,4 +30,4 @@ function Cabecera(props) {
   
 }
 
-export default Cabecera;
+export default Cabecera2;
