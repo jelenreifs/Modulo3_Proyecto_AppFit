@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import DatePicker from "react-datepicker";
-import TimePicker from 'react-time-picker';
+import { Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
-import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
+import "moment-precise-range-plugin";
 
 
 function Sidebar() {
+
+ 
 
 /*********************************************/ 
 /*           INICIAR ENTRENAMIENTO           */
@@ -28,18 +31,35 @@ function Sidebar() {
 
 /*********************************************/ 
 /*               INICIAR SUEÑO               */
-/*********************************************/ 
+/*********************************************/
+  
+   moment().format();
 
   
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [startHour, setStartHour] = useState('');
+  const [endHour, setEndHour] = useState('');
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+   const [tiempoTotal, setTiempoTotal] = useState('');
 
-  const [value, onChange] = useState('');
+
+
+
 
 /* Post Sueño */
    const [dataSuenio, setDataSuenio] = useState([]);
  
+  
+ /*********************************************/ 
+/*                   MODAL                    */
+/*********************************************/  
+const [mensaje, setMensaje] = useState("");
+
+const [show, setShow] = useState(false);
+
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
 
 
  /* Cargar dinamicamente el selects de actividad */
@@ -49,7 +69,6 @@ function Sidebar() {
       .then(res => {
         setDataActividad(res);
         setDataIntensidad(res);
-        console.log(res)
       });
   }, []);
   
@@ -71,8 +90,17 @@ const addActividad = () => {
       body: JSON.stringify({actividad:actividad, intensidad:intensidad, duracion:duracion}),
   })
      .then(res => res.json())
-       .then(res => {
+      .then(res => {
+        if (res.error === true) {
+          setMensaje(res.mensaje)
+          handleShow()
+          
+        } else {
+          //setMensaje("")
+        setMensaje(res.mensaje)
         setDataEntrenamiento(res);
+        handleShow()
+       }  
        });
   }
 
@@ -90,32 +118,59 @@ const handleChangeDuracion = (e) => {
   }
 
 
-
-/* const renderDayContents = (day, date) => {
-    const tooltipText = `Tooltip for date: ${date}`;
-    return <span title={tooltipText}>{getDate(date)}</span>;
-  }; */
-
-
-
-
 /* REGISTRAR SUEÑO*/
   
 const addSuenio = () => { 
 
-    fetch("/dreams/add", {
+    fetch("http://localhost:3000/dreams/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-      body: JSON.stringify({startDay:startDate, endDay:endDate}),
+      body: JSON.stringify({horaInicio:startHour, horaFin:endHour, horasTotal:totalFormat})
   })
      .then(res => res.json())
-       .then(res => {
+      .then(res => {
+          if (res.error === true) {
+          setMensaje(res.mensaje)
+          handleShow()
+          
+        } else {
+          //setMensaje("")
+        setMensaje(res.mensaje)
         setDataSuenio(res);
+        handleTotal()
+        handleShow()
+       }  
        });
   }
 
+
+  const handleChangeDate1 = (e) => { 
+    setStartDate(e.target.value)
+  }
+
+    const handleChangeDate2 = (e) => { 
+    setEndDate(e.target.value)
+  }
+
+    const handleChangeHour1 = (e) => { 
+    setStartHour(e.target.value)
+  }
+
+    const handleChangeHour2 = (e) => { 
+    setEndHour(e.target.value)
+  }
+
+
+  const handleTotal = () => { 
+    //setTiempoTotal(moment(`${startDate} ${startHour}`).preciseDiff(`${endDate} ${endHour}`))
+    setTiempoTotal(moment(`${startDate} ${startHour}`, true).preciseDiff(`${endDate} ${endHour}`, true))
+  }
+
+
+  const totalFormat = `${parseInt(tiempoTotal.hours)}.${parseInt(tiempoTotal.minutes)}`;
+  console.log(totalFormat)
 
 
   return (
@@ -151,62 +206,49 @@ const addSuenio = () => {
             </div>
           </div>
             
-        <button type="text" className="btn btn-primary btn-block" onClick={addActividad}>INICIAR ENTRENAMIENTO</button>
+          <Button variant="btn btn-primary btn-block" onClick={addActividad}>INICIAR ENTRENAMIENTO</Button>
         </div>
 
 
-
-
-        <div className="form-entrenamiento mb-5">
+        <div className="form-suenio mb-5">
           <h5>Registro sueño</h5>
-
           <div className="row">
-              <div className="col-sm-6 form-group">
-                  <label htmlFor="start" className="form-label">Inicio día</label>
-                  <DatePicker id="start" className="form-control"
-                      selected={startDate}
-                      onChange={date => setStartDate(date)}  />
+            <div className="col-sm-7 form-group">
+              <label htmlFor="startDate" className="form-label">Inicio <span>Día</span></label>
+              <input type="date" id="startDate" className="form-control" value={ startDate } onChange={ handleChangeDate1} required/>
             </div>
             
-               <div className="col-sm-6 mb-3 form-group">
-                  <label htmlFor="startTime" className="form-label">Inicio hora</label>
-                  <TimePicker  id="startTime" onChange={onChange} value={value} />
-              </div>
-             
+           <div className="col-sm-5 form-group">
+            <label htmlFor="startHour" className="form-label"><span>Hora</span></label>
+              <input type="time" id="startHour" className="form-control" value={ startHour } onChange={ handleChangeHour1} required />
+            </div>
+          
           </div>
 
 
-            <div className="row">
-              <div className="col-sm-6 form-group">
-                  <label htmlFor="start" className="form-label">Final día</label>
-                  <DatePicker id="start" className="form-control"
-                      selected={endDate}
-                      onChange={date => setStartDate(date)}  />
+           <div className="row">
+            <div className="col-sm-7 form-group">
+              <label htmlFor="endDate" className="form-label">Fin <span>Día</span></label>
+              <input type="date" id="endDate" className="form-control" value={ endDate } onChange={ handleChangeDate2} required/>
             </div>
             
-               <div className="col-sm-6 mb-3 form-group">
-                  <label htmlFor="startTime" className="form-label">Final hora</label>
-                  <TimePicker  id="startTime" onChange={onChange} value={value} />
-              </div>
-             
+           <div className="col-sm-5 form-group">
+            <label htmlFor="endtHour" className="form-label"><span>Hora</span></label>
+              <input type="time" id="endHour" className="form-control" value={ endHour } onChange={ handleChangeHour2} required />
+            </div>
+          
           </div>
 
- 
-        
-            
-          <button type="text" className="btn btn-primary btn-block" onClick={addSuenio}>REGISTRAR SUEÑO</button>
+          <Button variant="btn btn-primary btn-block" onClick={addSuenio}>REGISTRAR SUEÑO</Button>
           </div>
-
-        
-          
-        
-
-          
-
-    
-        
-    </div>
-     
+      </div>
+      
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>{ mensaje }</Modal.Title>
+          </Modal.Header>
+        </Modal>
+      
     </section>
   )
 }

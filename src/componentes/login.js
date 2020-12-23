@@ -1,16 +1,30 @@
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+
+
+import { useHistory } from "react-router-dom";
+
 
 function Login() {
   const [data, setData] = useState([]);
   const [telefono, setTelefono] = useState("");
   const [password, setPassword] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  
 
+/* Modal */
 const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+
+/* History */
+let history = useHistory();
+const handleDashboard = () => history.push("/dashboard");
+
   
 
   const loginUser = () => { 
@@ -24,17 +38,16 @@ const [show, setShow] = useState(false);
   })
      .then(res => res.json())
       .then(res => {
-         if (res.error === true) {
-        console.log("usuario no existe")
-      //  document.getElementById("mensaje").innerHTML = `<div class="mensaje">${data.mensaje}</div>`
+        if (res.error === true) {
+          setMensaje(res.mensaje)
+          handleShow()
           
-         } else {
-           console.log("usuario logueado correctamente")
-           
-         setData(res)
-       // location.replace("dashboard.html")
+          
+        } else {
+          setMensaje("")
+          setData(res.usuario)
+          handleDashboard()
        } 
-  
      
        });
   }
@@ -80,8 +93,14 @@ const [show, setShow] = useState(false);
 
       <div className="row">
         <div className="col-md-12">
-          <button onClick={loginUser} className="btn btn-primary btn-block">LOG IN</button>
-         
+            <Button variant="btn btn-primary btn-block" onClick={loginUser}>LOG IN</Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{ mensaje}</Modal.Title>
+        </Modal.Header>
+            </Modal>
+            
           <div className="link d-flex justify-content-center">    
             <Link to="/registro">Nuevo registro</Link>
           </div>

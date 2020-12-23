@@ -15,7 +15,7 @@ const [data, setData] = useState([]);
   const mostrarDatos = data.map((item,index) => { 
     return (
       <>
-        <tr key={ index }>
+        <tr key={ index}>
         <td className="tiempo">
             <i className="fas fa-clock"></i>
             <p className="list-item-dato">{item.duracion}</p>

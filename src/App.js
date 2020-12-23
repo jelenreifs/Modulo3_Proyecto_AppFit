@@ -1,4 +1,3 @@
-//import history from './history';
 
 import Login from "./componentes/login";
 import Registro from "./componentes/registro";
@@ -12,10 +11,10 @@ import Sidebar from "./componentes/sidebar";
 import Seguimiento from "./componentes/seguimiento";
 
 
-
-
 import React, { useState } from 'react';
-import {BrowserRouter, Router, Route, Link} from 'react-router-dom'
+import { BrowserRouter, Router, Route, Link } from 'react-router-dom';
+//import { Router, Route, Link } from 'react-router-dom';
+//import { createBrowserHistory } from 'history';
 
 import './App.css';
 
@@ -49,10 +48,12 @@ function App() {
           <Sidebar />
           <div id="page-content-wrapper">
             <Cabecera cambiarClase={handleChange}/>
-              <main>
+            <main>
+              <div className="row">
                 <Resumen />
                 <Pasos />
                 <Suenio />
+                 </div>
               </main>
             <Footer />
           </div>

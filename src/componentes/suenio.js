@@ -6,7 +6,7 @@ function Suenio() {
 
   let series = [{
     name: 'Sueño',
-    data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+    data: [],
   }] ; 
 
 
@@ -31,16 +31,21 @@ let options = {
    useEffect(() => {
     fetch("http://localhost:3000/dreams")
      .then(res => res.json())
-       .then(res => {
+      .then(res => {
+        const mostrarSuenio = res.map(item => item.horasTotal)
+        setDatosChart([{
+          name: 'Sueño',
+          data: mostrarSuenio }])
         setData(res);
        });
- }, []);
+   }, []);
 
 
 
 
   return (
-    <section className="col-xs-12 col-lg-4 suenio">
+  
+    <section className="col-xs-12 col-lg-6 mb-3 suenio">
       <div className="card card-dashboard bg-purple-800 rounded border border-primary">
         <div className="card-body">
               <div className="col-sm-12 grafico">

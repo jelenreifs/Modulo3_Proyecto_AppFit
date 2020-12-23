@@ -2,11 +2,12 @@ import Chart from "react-apexcharts";
 import React, { useState, useEffect } from 'react';
 
 function Pasos() {
+ 
 
- let series = [{
-    name: 'Sueño',
-    data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
-  }] ; 
+let series = [{
+      name: 'Pasos',
+      data: [],
+        }] ; 
 
 
 let options = {
@@ -22,23 +23,34 @@ let options = {
         }
       },
   };
+
   
   const [data, setData] = useState([]);
   const [chart, setChart] = useState(options);
   const [datosChart, setDatosChart] = useState(series);
+ 
+
 
    useEffect(() => {
-    fetch("http://localhost:3000/pasos")
+    fetch("http://localhost:3000/entrenamientos")
      .then(res => res.json())
-       .then(res => {
+      .then(res => {
+        const mostrarPasos = res.map(item => item.pasos)
+        setDatosChart([{
+          name: 'Pasos',
+          data: mostrarPasos }])
         setData(res);
        });
- }, []);
-
+   }, []);
+  
+  
   
 
+  //arrayPasos.push(mostrarPasos)
+
+
   return (
-    <section className="col-xs-12 col-lg-4 pasos">
+    <section className="col-xs-12 col-lg-6 mb-3 pasos">
       <div className="card card-dashboard bg-purple-800 rounded border border-primary">
         <div className="card-body">
               <div className="col-sm-12 grafico">

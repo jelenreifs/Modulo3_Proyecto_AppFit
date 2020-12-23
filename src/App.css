@@ -8,6 +8,7 @@ main {
   flex-direction: row;
   position: relative;
   top: 60px;
+  padding: 0 2em;
 }
 
 footer {
@@ -26,8 +27,16 @@ label {
   text-transform: uppercase;
 }
 
+label span {
+  font-size: 0.85em;
+  margin-bottom: .25rem;
+  color: #333;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
 /*****************************************/
-/*            COLOR              */
+/*                COLOR                 */
 /*****************************************/
 .bg-purple-100 {
   background-color: #d1c4e9;
@@ -66,6 +75,9 @@ label {
 /*****************************************/
 /*               Login               */
 /*****************************************/
+.login-wrapper{
+  height: 100vh;
+}
 
 .login,
 .registro {
@@ -204,13 +216,13 @@ section.resumen dd {
   font-weight: 800;
 }
 
-section.resumen dd::before {
+/* section.resumen dd::before {
   content: ".";
   width: 20px;
   height: 20px;
   background: rgb(246, 156, 85);
   border-radius: 50%;
-}
+} */
 
 /*************** **************************/
 /*            CARD PASOS y SUEÑO               */
@@ -348,6 +360,10 @@ section.suenio .card-title {
 }
 
 /*****************************************/
+/*               GRAFICO RESUMWN                 */
+/*****************************************/
+
+/*****************************************/
 /*               SIDEBAR                 */
 /*****************************************/
 
@@ -380,7 +396,7 @@ section.suenio .card-title {
 }
 
 .react-time-picker__clock.react-time-picker__clock--open {
-    display: none;
+  display: none;
 }
 
 .react-time-picker__clock-button {

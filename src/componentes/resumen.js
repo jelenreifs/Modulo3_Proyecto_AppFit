@@ -17,7 +17,7 @@ function Resumen() {
             }
           },
         },
-        labels: ["Reto"],
+        labels: ["Objetivo"],
       }
     
 
@@ -50,7 +50,7 @@ function Resumen() {
 
 
   return (
-    <section className="col-xs-12 col-lg-4 resumen">
+    <section className="col-xs-12 col-lg-6 mb-3 resumen">
       <div className="card card-dashboard bg-purple-800 rounded border border-primary">
         <div className="card-body">
           <div className="row">
